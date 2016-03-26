@@ -79,7 +79,6 @@ class Odoo_testing_3_horas(unittest.TestCase):
             days_fest.append(month_f[i].day)
         conn.close()
 
-
         fromdate = date(year,month, 1)
         todate = date(year,month,days_in_month)
         daygenerator = (fromdate + timedelta(x)
