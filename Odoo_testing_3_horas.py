@@ -62,12 +62,11 @@ class Odoo_testing_3_horas(unittest.TestCase):
         days_of_work = []
         days_total = []
         db_name=self.db_names()[1]
-        db_connect_pf = '"dbname='+"'"+db_name+"'"+" user='odoo' host='localhost' password='odoo'"+'"'
 
         try:
-            conn = psycopg2.connect("dbname='basetis_20160317_F' user='odoo' host='localhost' password='odoo'")
+            conn = psycopg2.connect("dbname='%s' user='odoo' host='localhost' password='odoo'" % str(db_name))
         except:
-            print "Failed to connect to database  2 - " + db_connect_pf
+            print "Failed to connect to database  2 - "
         cur = conn.cursor()
         cur.execute("""SELECT date FROM hr_holidays_public WHERE employee_category_id = 4 ORDER BY 1""")
 
@@ -94,11 +93,13 @@ class Odoo_testing_3_horas(unittest.TestCase):
 
     def test_1_horas(self):
         time.sleep(5)
-        for i in range(1,14):
-            self.text_of=self.driver.find_element_by_xpath(".//*[@id='oe_main_menu_placeholder']/ul[1]/li["+str(i)+"]/a/span")
-            temp_n=''.join(self.text_of.text)
-            if temp_n == "Personas":
-                self.text_of.click()
+        self.driver.find_element_by_xpath(".//*[@id='oe_main_menu_placeholder']/ul[1]/li[9]/a/span").click()
+        #for i in range(0,14):
+        #    self.text_of=self.driver.find_element_by_xpath(".//*[@id='oe_main_menu_placeholder']/ul[1]/li["+str(i)+"]/a/span")
+        #    temp_n=''.join(self.text_of.text)
+        #    if temp_n == "Personas":
+        #        print temp_n
+        #        self.text_of.click()
         time.sleep(5)
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[1]/div/div[1]/div/div/div[9]/ul[3]/li[1]/a/span").click()
         time.sleep(5)

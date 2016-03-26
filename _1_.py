@@ -2,6 +2,7 @@ import psycopg2
 conn = None
 def days_total():
     db_name_real = []
+
     db_names_res = ['template0', 'template', 'template1', 'postgres']
     try:
         conn = psycopg2.connect("dbname='postgres' user='odoo' password='Cnjnhb103'")
