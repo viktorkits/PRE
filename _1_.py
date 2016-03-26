@@ -10,6 +10,7 @@ def days_total():
     cur = conn.cursor()
     cur.execute("""SELECT datname from pg_database""")
 
+
     for row in cur:
         if row[0] not in db_names_res:
             db_name_real.append(row[0])
