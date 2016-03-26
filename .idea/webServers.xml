@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4648730c-efe6-4bc2-85fe-78fd847c4c6f" name="PRE" url="http://erp.pre.basetis.com">
+        <fileTransfer host="erp.pre.basetis.com" port="22" rootFolder="/datos2/home/git_basetis" accessType="SFTP" password="dfe8dfcbdfd9dfcfdfdedfc3dfd9df8adfeddfc3dfdedf8b" username="git_basetis">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
