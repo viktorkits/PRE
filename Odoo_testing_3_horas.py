@@ -13,15 +13,15 @@ class Odoo_testing_3_horas(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Firefox()
-        #cls.driver.get("https://erp.pre.basetis.com/web/database/selector")
-        cls.driver.get("http://127.0.0.1:8069/web/database/selector")
+        cls.driver.get("https://erp.pre.basetis.com/web/database/selector")
+        #cls.driver.get("http://127.0.0.1:8069/web/database/selector")
         cls.driver.implicitly_wait(5)
 
     def test_0_login(self):
         self.db_var=self.driver.find_element_by_id("db")
         temp_t=''.join(self.db_var.text)
         temp_db_x=temp_t.split()
-        Select(self.db_var).select_by_visible_text(temp_db_x[0])
+        Select(self.db_var).select_by_visible_text(temp_db_x[1])
         time.sleep(5)
         self.driver.find_element_by_id("password").send_keys("1Upv0Nkp")
         self.driver.find_element_by_id("login").send_keys("javier.cardaba@basetis.com")

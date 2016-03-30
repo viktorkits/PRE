@@ -19,14 +19,13 @@ class Odoo_testing_1_Menu(unittest.TestCase):
         self.db_var=self.driver.find_element_by_id("db")
         temp_t=''.join(self.db_var.text)
         temp_db_x=temp_t.split()
-        Select(self.db_var).select_by_visible_text(temp_db_x[0])
+        Select(self.db_var).select_by_visible_text(temp_db_x[1])
         time.sleep(5)
         self.driver.find_element_by_id("password").send_keys("1Upv0Nkp")
         self.driver.find_element_by_id("login").send_keys("javier.cardaba@basetis.com")
         self.driver.find_element_by_css_selector("button.btn.btn-primary").click()
         time.sleep(5)
         test_wodr = self.driver.find_elements_by_xpath(".//*[@id='oe_main_menu_placeholder']/ul[2]/li/a/span")
-        # self.assertTrue(test_wodr[0].text)
         if self.assertTrue(test_wodr[0].text):
             self.name = u'Javier C\xe1rdaba Mart\xednez'
             self.assertEqual(self.name, test_wodr[0].text)

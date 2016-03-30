@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>Tests Report</h1>
-<p class='attribute'><strong>Start Time:</strong> 2016-03-21 16:26:51</p>
-<p class='attribute'><strong>Duration:</strong> 0:02:04.364143</p>
-<p class='attribute'><strong>Status:</strong> Pass 3 Error 2</p>
+<p class='attribute'><strong>Start Time:</strong> 2016-03-30 17:33:21</p>
+<p class='attribute'><strong>Duration:</strong> 0:07:41.040630</p>
+<p class='attribute'><strong>Status:</strong> Pass 9</p>
 
 <p class='description'>Tests</p>
 </div>
@@ -235,12 +235,12 @@ function showOutput(id, name) {
     <td colspan='5' align='center'>pass</td>
 </tr>
 
-<tr class='errorClass'>
+<tr class='passClass'>
     <td>Odoo_testing_1_Menu.Odoo_testing_1_Menu</td>
     <td>2</td>
-    <td>1</td>
+    <td>2</td>
     <td>0</td>
-    <td>1</td>
+    <td>0</td>
     <td><a href="javascript:showClassDetail('c2',2)">Detail</a></td>
 </tr>
 
@@ -249,50 +249,18 @@ function showOutput(id, name) {
     <td colspan='5' align='center'>pass</td>
 </tr>
 
-<tr id='ft2.2' class='none'>
-    <td class='errorCase'><div class='testcase'>test_menu</div></td>
-    <td colspan='5' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
-        error</a>
-
-    <div id='div_ft2.2' class="popup_window">
-        <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.2').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-ft2.2: Traceback (most recent call last):
-  File "/home/mlad/Selenium/PRE/Odoo_testing_1_Menu.py", line 36, in test_menu
-    self.driver.find_element_by_xpath(".//*[@id='oe_main_menu_placeholder']/ul[1]/li["+str(i)+"]/a/span").click()
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webelement.py", line 75, in click
-    self._execute(Command.CLICK_ELEMENT)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webelement.py", line 469, in _execute
-    return self._parent.execute(command, params)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 201, in execute
-    self.error_handler.check_response(response)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 194, in check_response
-    raise exception_class(message, screen, stacktrace)
-WebDriverException: Message: Element is not clickable at point (56, 16.5). Other element would receive the click: &lt;div class="blockUI blockOverlay" style="z-index: 1100; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; position: fixed; opacity: 0.101606;"&gt;&lt;/div&gt;
-
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
-
-    </td>
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_menu</div></td>
+    <td colspan='5' align='center'>pass</td>
 </tr>
 
-<tr class='errorClass'>
+<tr class='passClass'>
     <td>Odoo_testing_2_Personas.Odoo_testing_2_Personas</td>
-    <td>2</td>
-    <td>1</td>
+    <td>3</td>
+    <td>3</td>
     <td>0</td>
-    <td>1</td>
-    <td><a href="javascript:showClassDetail('c3',2)">Detail</a></td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',3)">Detail</a></td>
 </tr>
 
 <tr id='pt3.1' class='hiddenRow'>
@@ -300,51 +268,46 @@ WebDriverException: Message: Element is not clickable at point (56, 16.5). Other
     <td colspan='5' align='center'>pass</td>
 </tr>
 
-<tr id='ft3.2' class='none'>
-    <td class='errorCase'><div class='testcase'>test_1_add_person</div></td>
-    <td colspan='5' align='center'>
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_1_add_person</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
 
-    <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.2')" >
-        error</a>
+<tr id='pt3.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_2_del_person</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
 
-    <div id='div_ft3.2' class="popup_window">
-        <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.2').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-ft3.2: Traceback (most recent call last):
-  File "/home/mlad/Selenium/PRE/Odoo_testing_2_Personas.py", line 37, in test_1_add_person
-    x=self.driver.find_element_by_class_name("oe_title").text
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 378, in find_element_by_class_name
-    return self.find_element(by=By.CLASS_NAME, value=name)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 712, in find_element
-    {'using': by, 'value': value})['value']
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 201, in execute
-    self.error_handler.check_response(response)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 194, in check_response
-    raise exception_class(message, screen, stacktrace)
-NoSuchElementException: Message: Unable to locate element: {"method":"class name","selector":"oe_title"}
-Stacktrace:
-    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmprbbY08/extensions/fxdriver@googlecode.com/components/driver-component.js:10723)
-    at fxdriver.Timer.prototype.setTimeout/&lt;.notify (file:///tmp/tmprbbY08/extensions/fxdriver@googlecode.com/components/driver-component.js:623)
+<tr class='passClass'>
+    <td>Odoo_testing_3_horas.Odoo_testing_3_horas</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c4',3)">Detail</a></td>
+</tr>
 
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_0_login</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
 
-        </pre>
-    </div>
-    <!--css div popup end-->
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_1_horas</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
 
-    </td>
+<tr id='pt4.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_2_partes_de_horas</div></td>
+    <td colspan='5' align='center'>pass</td>
 </tr>
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>5</td>
-    <td>3</td>
+    <td>9</td>
+    <td>9</td>
     <td>0</td>
-    <td>2</td>
+    <td>0</td>
     <td>&nbsp;</td>
 </tr>
 </table>
