@@ -39,9 +39,10 @@ def days_total():
     for i in days_of_work:
         if i not in days_fest:
             days_total.append(i)
-    return days_total
+    return days_total, days_fest
+
 x = days_total()
-print x
+print x[1]
 
 
 

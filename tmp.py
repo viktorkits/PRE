@@ -1,51 +1,39 @@
-# -*- coding: utf-8 -*-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
+def days_total(self):
+    month = datetime.now().month
+    year = datetime.now().year
+    days_in_month = calendar.monthrange(year, month)[1]
+    conn = None
+    days_f = []
+    month_f = []
+    days_fest = []
+    days_of_work = []
+    days_total = []
+    db_name = self.db_names()[1]
 
-class Tmp(unittest.TestCase):
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.base_url = "http://127.0.0.1:8069/"
-        self.verificationErrors = []
-        self.accept_next_alert = True
-    
-    def test_tmp(self):
-        driver = self.driver
-        driver.get(self.base_url + "/web#id=3444&view_type=form&model=hr_timesheet_sheet.sheet&menu_id=489")
-        driver.find_element_by_xpath("//div[3]/button").click()
-        driver.find_element_by_link_text("Suprimir").click()
-        self.assertRegexpMatches(self.close_alert_and_get_its_text(), r"^¿Realmente desea eliminar este registro[\s\S]$")
-    
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
-        return True
-    
-    def is_alert_present(self):
-        try: self.driver.switch_to_alert()
-        except NoAlertPresentException as e: return False
-        return True
-    
-    def close_alert_and_get_its_text(self):
-        try:
-            alert = self.driver.switch_to_alert()
-            alert_text = alert.text
-            if self.accept_next_alert:
-                alert.accept()
-            else:
-                alert.dismiss()
-            return alert_text
-        finally: self.accept_next_alert = True
-    
-    def tearDown(self):
-        self.driver.quit()
-        self.assertEqual([], self.verificationErrors)
+    try:
+        conn = psycopg2.connect("dbname='%s' user='odoo' host='localhost' password='odoo'" % str(db_name))
+    except:
+        print "Failed to connect to database %s" % str(db_name)
+    cur = conn.cursor()
+    cur.execute("""SELECT date FROM hr_holidays_public WHERE employee_category_id = 4 ORDER BY 1""")
 
-if __name__ == "__main__":
-    unittest.main()
+    for i in cur:
+        days_f.append(i[0])
+    for j in range(0, len(days_f)):
+        if days_f[j].month == month:
+            month_f.append(days_f[j])
+    for i in range(0, len(month_f)):
+        days_fest.append(month_f[i].day)
+    conn.close()
+
+    fromdate = date(year, month, 1)
+    todate = date(year, month, days_in_month)
+    daygenerator = (fromdate + timedelta(x)
+                    for x in range((todate - fromdate).days + 1))
+    for day in daygenerator:
+        if day.weekday() < 5:
+            days_of_work.append(day.day)
+    for i in days_of_work:
+        if i not in days_fest:
+            days_total.append(i)
+    return days_total

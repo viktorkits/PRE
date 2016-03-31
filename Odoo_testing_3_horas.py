@@ -89,7 +89,7 @@ class Odoo_testing_3_horas(unittest.TestCase):
         for i in days_of_work:
             if i not in days_fest:
                 days_total.append(i)
-        return days_total
+        return days_total, days_fest
 
     def test_1_horas(self):
         time.sleep(5)
@@ -113,7 +113,7 @@ class Odoo_testing_3_horas(unittest.TestCase):
         try:
             self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[1]/div/div/span[1]/div/button")
         except:
-            print "Edit not exist"
+            print "Button 'Edit' not exist"
 
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div[3]/div[1]/div/div/div[2]/div[1]/button").click()
 
@@ -124,20 +124,22 @@ class Odoo_testing_3_horas(unittest.TestCase):
         time.sleep(2)
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div[3]/div[1]/div/div/table[2]/tbody/tr[2]/td/div/button").click()
         time.sleep(2)
-        for i in days_of_work:
+        for i in days_of_work[0]:
             self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div[3]/div[1]/div/div/table[2]/tbody/tr[2]/td["+str(i+2)+"]/input").click()
             self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div[3]/div[1]/div/div/table[2]/tbody/tr[2]/td["+str(i+2)+"]/input").clear()
             self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div[3]/div[1]/div/div/table[2]/tbody/tr[2]/td["+str(i+2)+"]/input").send_keys(8)
-            time.sleep(1)
+            time.sleep(2)
+        #Press Guardar
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[1]/div/div/span[2]/button").click()
-        time.sleep(1)
+        time.sleep(15)
+        #Añadir dias festivas
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/header/button[2]").click()
         time.sleep(2)
         self.driver.find_element_by_xpath("html/body/div[4]/div/div/div[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/table/tbody/tr/td[2]/button").click()
         time.sleep(2)
         #Validar
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/header/button[1]").click()
-        time.sleep(2)
+        time.sleep(7)
         self.driver.find_element_by_xpath("//button[contains(.,'Aceptar')]").click()
         #Select tree wiev
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[3]/ul/li[2]/a").click()
@@ -147,11 +149,24 @@ class Odoo_testing_3_horas(unittest.TestCase):
         #Verificate status
         t_text = self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[3]/div/table/tbody/tr[1]/td[6]")
         self.assertEqual("Abierto", t_text.text)
-        time.sleep(2)
-        #Del line
+        time.sleep(4)
+        #verifications of total time
+        self.total_time = self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[3]/div/table/tbody/tr[1]/td[5]").text
+
+        self.horas_al_mes_int = 8 * (len(days_of_work[0]) + len(days_of_work[1]))
+        self.horas_al_mes = "%s:00" % str(self.horas_al_mes_int)
+        try:
+            self.assertEqual(self.horas_al_mes, self.total_time)
+        except:
+            print "Calculas del horario - False"
+        time.sleep(5)
+        #Del line in Tree view
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[3]/div/table/tbody/tr[1]/th/input").click()
+        time.sleep(2)
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[2]/div/div[2]/div/div[2]/button").click()
+        time.sleep(2)
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[2]/div/div[2]/div/div[2]/ul/li[4]").click()
+        time.sleep(2)
         alert = self.driver.switch_to_alert()
         alert_text = alert.text
         time.sleep(2)
