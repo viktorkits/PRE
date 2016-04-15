@@ -6,7 +6,7 @@ from __builtin__ import classmethod
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-
+from selenium.webdriver.common.keys import Keys
 
 class Odoo_testing_2_Personas(unittest.TestCase):
     @classmethod
@@ -40,17 +40,17 @@ class Odoo_testing_2_Personas(unittest.TestCase):
 
         self.driver.find_element_by_id("oe-field-input-4").send_keys("Test_First_Name")
         self.driver.find_element_by_id("oe-field-input-5").send_keys("Test_Last_Name")
+
         self.driver.find_element_by_xpath(".//*[@id='notebook_page_11']/table[1]/tbody/tr[1]/td[1]/table/tbody/tr[3]/td[2]/span/div/span[2]/img").click()
         time.sleep(2)
-        self.driver.find_element_by_id("ui-id-26").click()
+        self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/ul[2]/li[1]/a").click()
+        time.sleep(2)
         self.driver.find_element_by_xpath(".//*[@id='notebook_page_11']/table[1]/tbody/tr[1]/td[2]/table/tbody/tr[5]/td/table/tbody/tr[2]/td[2]/span/div/span[2]/img").click()
         time.sleep(2)
-        #self.driver.find_element_by_id("oe-field-input-24").click()
-        #self.driver.find_element_by_id("oe-field-input-24").send_keys("Plan evaluación proyectos BaseTIS")
-        self.driver.find_element_by_id("ui-id-30").click()
+        self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/ul[9]/li[1]/a").click()
         time.sleep(2)
         self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[1]/div/div[2]/span[2]/button").click()
-
+        time.sleep(3)
         #Verificaciones del User Data
         self.test_user_name=self.test_user=self.driver.find_element_by_xpath("html/body/div[1]/table/tbody/tr/td[2]/div/div/div/div/div/div[4]/div/div[4]/div/div/div[1]/div/div[1]/span[1]/span")
         self.assertEqual("Test_First_Name",self.test_user_name.text)
